@@ -10,8 +10,22 @@ import xml.etree.ElementTree as ET,sys
 #  • Place this file directly into the map folder         # 
 #  • Please report any errors to andys@deltaflyer.cz      #
 #  • You can contact me on unofficial IRC ME channel too  #
-#  • join #medieval-engineers on irc.esper.net               #
+#  • join #medieval-engineers on irc.esper.net            #
 ###########################################################
+
+ItemsToRemove = []
+
+###########################################################
+#  • uncomment desired items to be removed                #
+#  • uncomment means remove leading hash sign (#)         #
+#  • to disable item just comment the line (add #)        #
+###########################################################
+
+ItemsToRemove.append("ScrapWoodBranches")
+#ItemsToRemove.append("ScrapWood")
+#ItemsToRemove.append("StoneOreMid")
+#ItemsToRemove.append("StoneOreSmall")
+
 
 #too lazy to study namespaces in python, lets load the namespace line into string and place it into newly created file later
 origfile = open('SANDBOX_0_0_0_.sbs').read()
@@ -42,7 +56,7 @@ for child in root: #Let's list all subelements in root
 				if element.tag == "CubeBlocks":
 					for Block in element[0]:
 						if Block.tag == "SubtypeName":
-							if Block.text == "ScrapWoodBranches": 
+							if Block.text in ItemsToRemove:
 								Objects.append(Object) #Add Object to Objects list
 	a += 1
 
